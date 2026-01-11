@@ -14,7 +14,7 @@ dotenv.config();
 
 const app = express();
 const server = createServer(app);
-const PORT = parseInt(process.env.PORT || '5173');
+const PORT = Number(process.env.PORT) || 3001;
 
 // Middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
@@ -39,6 +39,6 @@ initWebSocket(server);
 server.listen(PORT, () => {
   console.log('========================================');
   console.log('     $MAP Canvas Server');
-  console.log('     http://localhost:' + PORT);
+  console.log(`     Listening on port ${PORT}`);
   console.log('========================================');
 });
