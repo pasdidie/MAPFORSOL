@@ -146,3 +146,6 @@ export async function verifyPaymentReal(
 ): Promise<PaymentVerification> {
   return verifyPayment(txSignature, expectedWallet, expectedAmount);
 }
+
+
+export const verifyPaymentDev = verifyPayment;
