@@ -1,73 +1,61 @@
-# $MAP - Solana Pixel Canvas
+# MAP — Web App
 
-Canvas collaboratif 2048×2048 pixels sur Solana avec système de paiement.
+MAP is a lightweight web application that provides an interactive interface with a clean UI and a modern front-end stack (Vite + TypeScript + Tailwind).  
+The goal is simple: deliver a fast, responsive website that can be deployed directly on Vercel and updated through GitHub pushes.
 
-## Fonctionnalités
+---
 
-- 🎨 **Pixels gratuits** - 1 pixel toutes les 60 secondes
-- 🖼️ **Image Stamps** - Upload d'images converties en pixel art (payant)
-- 🛡️ **Shields** - Zones de protection (payant)
-- 💰 **Paiements Solana** - Via token $MAP
+## What the website does
 
-## Installation Windows
+- **Single-page web experience** built for speed and clarity
+- **Modern UI styling** with Tailwind CSS
+- **TypeScript codebase** for maintainability
+- **Utility-based architecture** (helpers/utilities used across the app)
 
-### 1. Prérequis
-- Node.js 22+ : https://nodejs.org/
-- PostgreSQL : https://www.postgresql.org/download/windows/
+---
 
-### 2. Base de données
-```sql
-CREATE DATABASE map_canvas;
-```
+## How it works (high-level)
 
-### 3. Configuration
-```powershell
-cd backend
-copy .env.example .env
-# Éditer .env avec vos paramètres
-```
+The application is structured around a front-end project located in the `frontend/` folder:
 
-### 4. Installation
-```powershell
-# Backend
-cd backend
-npm install
-npm run db:migrate
+- `frontend/` contains the actual website source code
+- Vite handles bundling and produces a production build in `dist/`
+- Tailwind is used for styling and responsive layout
+- Shared utilities live in `src/utils/` to keep logic clean and reusable
 
-# Frontend
-cd ../frontend
-npm install
-```
+When deployed, Vercel builds the front-end and serves the generated static assets.
 
-### 5. Lancement
-```powershell
-# Terminal 1
-cd backend
-npm run dev
+---
 
-# Terminal 2
-cd frontend
-npm run dev
-```
+## Deployment (Vercel)
 
-### 6. Ouvrir
-http://localhost:5173
+This project is designed to be deployed via GitHub → Vercel.
 
-## Configuration Production
+### Recommended Vercel settings
+- **Root Directory:** `frontend`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
 
-Pour activer les vrais paiements, configurer dans `.env`:
-- `TREASURY_WALLET` : Adresse du wallet qui recevra les paiements
-- `MAP_TOKEN_MINT` : Adresse du token $MAP sur Solana
-- `SOLANA_RPC_URL` : URL du RPC Solana (mainnet)
+Every push to the default branch triggers an automatic redeploy on Vercel.
 
-## Prix
+---
 
-| Feature | Taille | Prix |
-|---------|--------|------|
-| Stamp | 32×32 | 100 $MAP |
-| Stamp | 64×64 | 300 $MAP |
-| Stamp | 128×128 | 800 $MAP |
-| Shield | 64×64 - 1 jour | 50 $MAP |
-| Shield | 64×64 - 3 jours | 120 $MAP |
-| Shield | 64×64 - 7 jours | 200 $MAP |
-| Shield | 64×64 - 30 jours | 500 $MAP |
+## Environment variables
+
+If the app requires secrets or API keys, they should **not** be committed in the repository.  
+Add them directly in **Vercel → Project Settings → Environment Variables**.
+
+---
+
+## Project structure
+
+```txt
+MAP/
+  frontend/
+    src/
+      utils/
+    public/
+    index.html
+    vite.config.ts
+    tailwind.config.js
+    tsconfig.json
